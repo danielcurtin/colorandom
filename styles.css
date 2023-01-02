@@ -1,0 +1,38 @@
+* {
+    font-family: 'Amatic SC', cursive;
+}
+
+.color {
+    height: 100vh;
+    width: 20vw;
+}
+
+.boxes {
+    display: flex;
+    justify-content: row;
+}
+
+img {
+    border: solid 5px white;
+}
+
+#color-one {
+    background-color: red;
+
+}
+
+#color-two {
+    background-color: orange;
+}
+
+#color-three {
+    background-color: yellow;
+}
+
+#color-four {
+    background-color: green;
+}
+
+#color-five {
+    background-color: blue;
+}
