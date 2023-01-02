@@ -3,13 +3,17 @@
 }
 
 .color {
-    height: 100px;
-    width: 100px;
+    height: 100vh;
+    width: 20vw;
 }
 
 .boxes {
     display: flex;
     justify-content: row;
+}
+
+img {
+    border: solid 5px white;
 }
 
 #color-one {
