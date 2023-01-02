@@ -12,10 +12,6 @@
     justify-content: row;
 }
 
-img {
-    border: solid 5px white;
-}
-
 #color-one {
     background-color: red;
 
@@ -35,4 +31,9 @@ img {
 
 #color-five {
     background-color: blue;
+}
+
+.lock {
+    height: 50px;
+    width: 50px;
 }
