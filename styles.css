@@ -46,24 +46,23 @@ header > h1 {
     justify-content: row;
 }
 
-#color-1 {
+#color-0 {
     background-color: red;
-
 }
 
-#color-2 {
+#color-1 {
     background-color: orange;
 }
 
-#color-3 {
+#color-2 {
     background-color: yellow;
 }
 
-#color-4 {
+#color-3 {
     background-color: green;
 }
 
-#color-5 {
+#color-4 {
     background-color: blue;
 }
 
