@@ -1,3 +1,54 @@
+class Color{
+    constructor(){
+        this.locked = false
+    }
+
+    randomHexCode(){
+        var currentHexCode = ""
+        
+        for (var i = 0; i < 6; i++){
+            currentHexCode += hexCharacters[getRandomNumber()]
+        }
+        return `#${currentHexCode}`
+    }
+}
+
+class Palette{
+    constructor(){
+        this.colors = [
+            {
+                hex: "",
+                locked: false
+            },
+            {
+                hex: "",
+                locked: false
+            },
+            {
+                hex: "",
+                locked: false
+            },
+            {
+                hex: "",
+                locked: false
+            },
+            {
+                hex: "",
+                locked: false
+            }
+        ]
+        this.id = Date.now()
+    }
+
+    buildNewPalette(){
+        for (var i = 0; i < 5; i++){
+            if (!this.colors[i].locked){
+                this.colors[i].hex = color.randomHexCode()
+            }
+        }
+    }
+}
+
 
 //buttons
 var newPalette = document.querySelector("#new")
@@ -18,29 +69,11 @@ var hex3 = document.querySelector("#hex-3")
 var hex4 = document.querySelector("#hex-4")
 var hex5 = document.querySelector("#hex-5")
 
+//instances
+var color = new Color()
+var palette = new Palette()
+
 var hexCharacters = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-class Color{
-    constructor(){
-        this.locked = false
-    }
-
-    randomHexCode(){
-        var currentHexCode = ""
-        var character = ""
-        for (var i = 0; i < 6; i++){
-            character = hexCharacters[getRandomNumber()]
-            currentHexCode += character
-        }
-        return `#${currentHexCode}`
-    }
-}
-
-
-
-
-
-
 
 function getRandomNumber(){
     return Math.floor(Math.random() * hexCharacters.length)
