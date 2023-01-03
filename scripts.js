@@ -1,41 +1,20 @@
 class Color{
-    constructor(){
+    constructor(hex){
+        this.hex = hex
         this.locked = false
-    }
-
-    randomHexCode(){
-        var currentHexCode = ""
-        
-        for (var i = 0; i < 6; i++){
-            currentHexCode += hexCharacters[getRandomNumber()]
-        }
-        return `#${currentHexCode}`
-    }
+    } 
 }
 
+
+
 class Palette{
-    constructor(){
+    constructor(a, b, c, d, e){
         this.colors = [
-            {
-                hex: "",
-                locked: false
-            },
-            {
-                hex: "",
-                locked: false
-            },
-            {
-                hex: "",
-                locked: false
-            },
-            {
-                hex: "",
-                locked: false
-            },
-            {
-                hex: "",
-                locked: false
-            }
+            new Color(a),
+            new Color(b),
+            new Color(c),
+            new Color(d),
+            new Color(e)
         ]
         this.id = Date.now()
     }
@@ -43,11 +22,14 @@ class Palette{
     buildNewPalette(){
         for (var i = 0; i < 5; i++){
             if (!this.colors[i].locked){
-                this.colors[i].hex = color.randomHexCode()
+                this.colors[i].hex = randomHexCode()
             }
         }
     }
 }
+
+
+
 
 
 //buttons
@@ -79,3 +61,13 @@ function getRandomNumber(){
     return Math.floor(Math.random() * hexCharacters.length)
 }
 
+function randomHexCode(){
+    var currentHexCode = ""
+    for (var i = 0; i < 6; i++){
+        currentHexCode += hexCharacters[getRandomNumber()]
+    }
+    return `#${currentHexCode}`
+}
+
+palette.buildNewPalette()
+console.log(palette)
