@@ -77,3 +77,18 @@ header > h1 {
     width: 30px;
     margin: 5px;
 }
+
+@keyframes slideLeft {
+    from{
+        transform: translateX(0%);
+    }
+
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.navopen {
+    animation: slideLeft 2s ease-in;
+    transform: translateX(-100%);
+}
