@@ -47,6 +47,7 @@ class Palette{
 var newPalette = document.querySelector("#new")
 var savePalette = document.querySelector("#save")
 var viewSaved = document.querySelector("#saved")
+var closeSaved = document.querySelector('#close-saved')
 
 //colors
 var color1 = document.querySelector("#color-0")
@@ -76,6 +77,8 @@ color5.addEventListener('click', checkLock)
 
 newPalette.addEventListener('click', createNewPalette)
 viewSaved.addEventListener('click', displaySaved)
+savePalette.addEventListener('click', savePaletteToBar)
+closeSaved.addEventListener('click', closeNavBar)
 
 
 
@@ -122,5 +125,16 @@ function updateColors() {
 }
 
 function displaySaved() {
-    savedMenu.classList.add('navopen')
+    savedMenu.classList.add('navOpen')
+    savedMenu.classList.remove('navClose')
+}
+
+function savePaletteToBar() {
+
+}
+
+function closeNavBar() {
+    savedMenu.classList.add('navClose')
+    savedMenu.classList.remove('navOpen')
+    
 }
