@@ -4,9 +4,18 @@
 }
 
 body {
+    padding: 0px;
+    margin: 0px;
+    background-color: black;
+}
+
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-flow: column;
     margin: 0px;
     padding: 0px;
-    background-color: black;
 }
 
 header {
@@ -46,27 +55,25 @@ header > h1 {
     justify-content: row;
 }
 
-#color-0 {
-    background-color: red;
-}
-
-#color-1 {
-    background-color: orange;
-}
-
-#color-2 {
-    background-color: yellow;
-}
-
-#color-3 {
-    background-color: green;
-}
-
-#color-4 {
-    background-color: blue;
-}
-
 .lock {
     height: 50px;
     width: 50px;
+}
+
+#saved-palettes {
+    position: absolute;
+    top: 0px;
+    right: -20vw;
+    height: 100vh;
+    width: 20vw;
+    display: flex;
+    flex-flow: column;
+    background: red;
+}
+
+#close-saved {
+    align-self: end;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
 }

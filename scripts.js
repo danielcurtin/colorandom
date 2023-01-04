@@ -65,8 +65,15 @@ var hex5 = document.querySelector("#hex-4")
 //instances
 var palette = new Palette()
 
-var hexCharacters = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+//nav
+var savedPalettesMenu = document.querySelector('#saved-palettes')
 
+//data model
+var hexCharacters = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+var savedPalettes = [];
+
+
+createNewPalette()
 
 color1.addEventListener('click', checkLock)
 color2.addEventListener('click', checkLock)
@@ -75,6 +82,7 @@ color4.addEventListener('click', checkLock)
 color5.addEventListener('click', checkLock)
 
 newPalette.addEventListener('click', createNewPalette)
+viewSaved.addEventListener('click', showSaved)
 
 
 
@@ -120,4 +128,6 @@ function updateColors() {
     }
 }
 
-palette.buildNewPalette()
+function showSaved() {
+    
+}
