@@ -107,7 +107,7 @@ header > h1 {
 }
 
 .navClose {
-    animation: slideRight 2s ease-in;
+    animation: slideRight 0.5s ease-in;
 }
 
 .box {
