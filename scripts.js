@@ -47,6 +47,7 @@ var savePaletteBtn = document.querySelector("#save")
 var viewSavedBtn = document.querySelector("#saved")
 var closeSavedBtn = document.querySelector('#close-saved')
 
+
 var color1 = document.querySelector("#color-0")
 var color2 = document.querySelector("#color-1")
 var color3 = document.querySelector("#color-2")
@@ -74,6 +75,7 @@ newPaletteBtn.addEventListener('click', createNewPalette)
 viewSavedBtn.addEventListener('click', openNavBar)
 savePaletteBtn.addEventListener('click', checkForDuplicate)
 closeSavedBtn.addEventListener('click', closeNavBar)
+savedMenu.addEventListener('click', deleteSavedPalette)
 
 
 function getRandomNumber() {
@@ -124,6 +126,8 @@ function checkForDuplicate() {
         }      
     }
     savePalette()
+    createNewPalette()
+    displaySavedPalettes()
 }
 
 function savePalette() {
@@ -141,7 +145,7 @@ function displaySavedPalettes() {
             <div class="box" style="background: ${savedPalettes[i].colors[2].hex}"></div>
             <div class="box" style="background: ${savedPalettes[i].colors[3].hex}"></div>
             <div class="box" style="background: ${savedPalettes[i].colors[4].hex}"></div>
-            <img src="./icons/trashcan.png" style="width: 2.3vw; height: 2.3vw" alt="">
+            <img class="delete-btn" id="d${savedPalettes[i].id}" src="./icons/trashcan.png" style="width: 2.3vw; height: 2.3vw" alt="">
         `
     }
 } 
@@ -155,6 +159,18 @@ function openNavBar() {
 function closeNavBar() {
     savedMenu.classList.add('navClose')
     savedMenu.classList.remove('navOpen')   
+}
+
+function deleteSavedPalette(event) {
+    var deletionTarget = event.target.id
+    deletionTarget = deletionTarget.slice(1)
+    deletionTarget = parseInt(deletionTarget)
+    for (var i = 0; i < savedPalettes.length; i++) {
+        if (savedPalettes[i].id === deletionTarget) {
+            savedPalettes.splice(i, 1)
+        }
+    }
+    displaySavedPalettes()
 }
 
 
