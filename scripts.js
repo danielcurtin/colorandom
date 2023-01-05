@@ -1,27 +1,25 @@
-class Color{
-    constructor(){
-        this.hex = ""
+class Color {
+    constructor(hex) { 
+        this.hex = hex || ""
         this.locked = false
     } 
 }
 
-
-
-class Palette{
-    constructor(){
+class Palette {
+    constructor(hex1, hex2, hex3, hex4, hex5, id) {
         this.colors = [
-            new Color(),
-            new Color(),
-            new Color(),
-            new Color(),
-            new Color()
+            new Color(hex1),
+            new Color(hex2),
+            new Color(hex3),
+            new Color(hex4),
+            new Color(hex5)
         ]
-        this.id = Date.now()
+        this.id = id || Date.now()
     }
 
-    buildNewPalette(){
-        for (var i = 0; i < 5; i++){
-            if (!this.colors[i].locked){
+    buildNewPalette() {
+        for (var i = 0; i < 5; i++) {
+            if (!this.colors[i].locked) {
                 this.colors[i].hex = randomHexCode()
             }
         }
@@ -44,61 +42,63 @@ class Palette{
 }
 
 
-//buttons
-var newPalette = document.querySelector("#new")
-var savePalette = document.querySelector("#save")
-var viewSaved = document.querySelector("#saved")
-var closeSaved = document.querySelector('#close-saved')
+var newPaletteBtn = document.querySelector("#new")
+var savePaletteBtn = document.querySelector("#save")
+var viewSavedBtn = document.querySelector("#saved")
+var closeSavedBtn = document.querySelector('#close-saved')
 
-//colors
 var color1 = document.querySelector("#color-0")
 var color2 = document.querySelector("#color-1")
 var color3 = document.querySelector("#color-2")
 var color4 = document.querySelector("#color-3")
 var color5 = document.querySelector("#color-4")
 
-//instances
-var palette = new Palette()
-
-//nav
 var savedMenu = document.querySelector('#saved-palettes')
+var displayBoxes = document.querySelector('.display-boxes')
 
-//data model
+var palette = new Palette()
 var hexCharacters = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 var savedPalettes = [];
 
 
 createNewPalette()
 
-color1.addEventListener('click', checkLock)
-color2.addEventListener('click', checkLock)
-color3.addEventListener('click', checkLock)
-color4.addEventListener('click', checkLock)
-color5.addEventListener('click', checkLock)
 
-newPalette.addEventListener('click', createNewPalette)
-viewSaved.addEventListener('click', displaySaved)
-savePalette.addEventListener('click', savePaletteToBar)
-closeSaved.addEventListener('click', closeNavBar)
+color1.addEventListener('click', checkIfLock)
+color2.addEventListener('click', checkIfLock)
+color3.addEventListener('click', checkIfLock)
+color4.addEventListener('click', checkIfLock)
+color5.addEventListener('click', checkIfLock)
+
+newPaletteBtn.addEventListener('click', createNewPalette)
+viewSavedBtn.addEventListener('click', openNavBar)
+savePaletteBtn.addEventListener('click', checkForDuplicate)
+closeSavedBtn.addEventListener('click', closeNavBar)
 
 
-
-
-function getRandomNumber(){
+function getRandomNumber() {
     return Math.floor(Math.random() * hexCharacters.length)
 }
 
-function randomHexCode(){
+function randomHexCode() {
     var currentHexCode = ""
-    for (var i = 0; i < 6; i++){
+    for (var i = 0; i < 6; i++) {
         currentHexCode += hexCharacters[getRandomNumber()]
     }
     return `#${currentHexCode}`
 }
 
-function checkLock(event) {
+function checkIfLock(event) {
     if (event.target.className === "lock") {
         palette.lockColor(event.target.id);
+    }
+}
+
+function toggleLock(num) {
+    if (palette.colors[num].locked) {
+        return "./icons/black-lock.png"
+    } else {
+        return "./icons/black-unlock.png"
     }
 }
 
@@ -107,42 +107,87 @@ function createNewPalette() {
     updateColors()
 }
 
-function checkIfLocked(num) {
-    if (palette.colors[num].locked) {
-        return "./icons/black-lock.png"
-    } else {
-        return "./icons/black-unlock.png"
-    }
-}
-
 function updateColors() {
     for (var i = 0; i < palette.colors.length; i++) {
         var hold = document.querySelector(`#color-${i}`)
         hold.style.background = palette.colors[i].hex
         hold.innerHTML = 
         `<p>${palette.colors[i].hex}</p>
-        <img class="lock" id="lock-${i}" src=${checkIfLocked(i)} alt="">`
+        <img class="lock" id="lock-${i}" src=${toggleLock(i)} alt="">`
     }
 }
 
-function displaySaved() {
+function checkForDuplicate() {
+    for (var i = 0; i < savedPalettes.length; i++) {
+        if (palette.id === savedPalettes[i].id) {
+            return
+        }      
+    }
+    savePalette()
+}
+
+function savePalette() {
+    var currentPalette = new Palette(palette.colors[0].hex, palette.colors[1].hex, palette.colors[2].hex, palette.colors[3].hex, palette.colors[4].hex, palette.id)
+    savedPalettes.push(currentPalette)
+}
+
+function displaySavedPalettes() {
+    displayBoxes.innerHTML = `` 
+    for(var i = 0; i < savedPalettes.length; i++) {
+        displayBoxes.innerHTML += 
+        `
+            <div class="box" style="background: ${savedPalettes[i].colors[0].hex}"></div>
+            <div class="box" style="background: ${savedPalettes[i].colors[1].hex}"></div>
+            <div class="box" style="background: ${savedPalettes[i].colors[2].hex}"></div>
+            <div class="box" style="background: ${savedPalettes[i].colors[3].hex}"></div>
+            <div class="box" style="background: ${savedPalettes[i].colors[4].hex}"></div>
+            <img src="./icons/trashcan.png" style="width: 2.3vw; height: 2.3vw" alt="">
+        `
+    }
+} 
+
+function openNavBar() {
     savedMenu.classList.add('navOpen')
     savedMenu.classList.remove('navClose')
-}
-
-function savePaletteToBar() {
-    for (var i = 0; i < savedPalettes.length; i++) {
-        if (this.id !== savedPalettes[i].id) {
-        savedPalettes.push(palette);
-    }       
-    }
+    displaySavedPalettes()
 }
 
 function closeNavBar() {
     savedMenu.classList.add('navClose')
-    savedMenu.classList.remove('navOpen')    
+    savedMenu.classList.remove('navOpen')   
 }
 
-function displaySavedPalettes() {
 
+
+
+
+
+function lightOrDark(hex) {
+
+    hex = +("0x" + hex.slice(1).replace( 
+        hex.length < 5 && /./g, '$&$&'
+    )
+             );
+
+             console.log(hex)
+
+    r = hex >> 16;
+    g = hex >> 8 & 255;
+    b = hex & 255;
+
+    console.log(r,g,b)
+
+  hsp = Math.sqrt(
+    0.299 * (r * r) +
+    0.587 * (g * g) +
+    0.114 * (b * b)
+  );
+ 
+  
+  if (hsp>127.5) {
+    return 'light';
+  } 
+  else {
+    return 'dark';
+  }
 }
