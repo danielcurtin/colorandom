@@ -156,3 +156,38 @@ function closeNavBar() {
     savedMenu.classList.add('navClose')
     savedMenu.classList.remove('navOpen')   
 }
+
+
+
+
+
+
+function lightOrDark(hex) {
+
+    hex = +("0x" + hex.slice(1).replace( 
+        hex.length < 5 && /./g, '$&$&'
+    )
+             );
+
+             console.log(hex)
+
+    r = hex >> 16;
+    g = hex >> 8 & 255;
+    b = hex & 255;
+
+    console.log(r,g,b)
+
+  hsp = Math.sqrt(
+    0.299 * (r * r) +
+    0.587 * (g * g) +
+    0.114 * (b * b)
+  );
+ 
+  
+  if (hsp>127.5) {
+    return 'light';
+  } 
+  else {
+    return 'dark';
+  }
+}
