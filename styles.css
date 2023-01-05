@@ -69,6 +69,8 @@ header > h1 {
     display: flex;
     flex-flow: column;
     background: white;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
 }
 
 #close-saved {
@@ -111,16 +113,15 @@ header > h1 {
 }
 
 .box {
-    background-color: blue;
-    height: 2vw;
-    width: 2vw;
-    border: solid black 1px;
-    
+    height: 2.5vw;
+    width: 2.5vw;
+    border-radius: 10px;
 }
 
 .display-boxes {
-    display: flex;
-    justify-content: space-around;
-    
-
+    margin-top: 30px;
+    margin-left: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+    grid-gap: 1rem;
 }

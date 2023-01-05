@@ -54,6 +54,7 @@ var color4 = document.querySelector("#color-3")
 var color5 = document.querySelector("#color-4")
 
 var savedMenu = document.querySelector('#saved-palettes')
+var displayBoxes = document.querySelector('.display-boxes')
 
 var palette = new Palette()
 var hexCharacters = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -131,15 +132,27 @@ function savePalette() {
 }
 
 function displaySavedPalettes() {
-
+    displayBoxes.innerHTML = `` 
+    for(var i = 0; i < savedPalettes.length; i++) {
+        displayBoxes.innerHTML += 
+        `
+            <div class="box" style="background: ${savedPalettes[i].colors[0].hex}"></div>
+            <div class="box" style="background: ${savedPalettes[i].colors[1].hex}"></div>
+            <div class="box" style="background: ${savedPalettes[i].colors[2].hex}"></div>
+            <div class="box" style="background: ${savedPalettes[i].colors[3].hex}"></div>
+            <div class="box" style="background: ${savedPalettes[i].colors[4].hex}"></div>
+            <img src="./icons/trashcan.png" style="width: 2.3vw; height: 2.3vw" alt="">
+        `
+    }
 } 
 
 function openNavBar() {
     savedMenu.classList.add('navOpen')
     savedMenu.classList.remove('navClose')
+    displaySavedPalettes()
 }
 
 function closeNavBar() {
     savedMenu.classList.add('navClose')
-    savedMenu.classList.remove('navOpen')    
+    savedMenu.classList.remove('navOpen')   
 }
