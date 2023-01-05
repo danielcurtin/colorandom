@@ -68,12 +68,59 @@ header > h1 {
     width: 20vw;
     display: flex;
     flex-flow: column;
-    background: red;
+    background: white;
 }
 
 #close-saved {
     align-self: end;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     margin: 5px;
+    border: none;
+    background-color: transparent;
+
+}
+
+@keyframes slideLeft {
+    from{
+        transform: translateX(0%);
+    }
+
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideRight {
+    from{
+        transform: translateX(-100%);
+    }
+
+    to{
+        transform: translateX(0%);
+    }
+}
+
+.navOpen {
+    animation: slideLeft 0.5s ease-in;
+    transform: translateX(-100%);
+}
+
+.navClose {
+    animation: slideRight 2s ease-in;
+}
+
+.box {
+    background-color: blue;
+    height: 2vw;
+    width: 2vw;
+    border: solid black 1px;
+    
+}
+
+.display-boxes {
+    display: flex;
+    justify-content: space-around;
+    
+
 }

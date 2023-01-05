@@ -25,9 +25,10 @@ class Palette{
                 this.colors[i].hex = randomHexCode()
             }
         }
+        this.id = Date.now()
     }
 
-    lockColor(id) { "lock-3"
+    lockColor(id) { 
         var element = document.querySelector(`#${id}`)
         var strInt = id.substr(id.length - 1, 1)
         var num = parseInt(strInt)
@@ -47,6 +48,7 @@ class Palette{
 var newPalette = document.querySelector("#new")
 var savePalette = document.querySelector("#save")
 var viewSaved = document.querySelector("#saved")
+var closeSaved = document.querySelector('#close-saved')
 
 //colors
 var color1 = document.querySelector("#color-0")
@@ -55,18 +57,11 @@ var color3 = document.querySelector("#color-2")
 var color4 = document.querySelector("#color-3")
 var color5 = document.querySelector("#color-4")
 
-//hex codes
-var hex1 = document.querySelector("#hex-0")
-var hex2 = document.querySelector("#hex-1")
-var hex3 = document.querySelector("#hex-2")
-var hex4 = document.querySelector("#hex-3")
-var hex5 = document.querySelector("#hex-4")
-
 //instances
 var palette = new Palette()
 
 //nav
-var savedPalettesMenu = document.querySelector('#saved-palettes')
+var savedMenu = document.querySelector('#saved-palettes')
 
 //data model
 var hexCharacters = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -82,7 +77,9 @@ color4.addEventListener('click', checkLock)
 color5.addEventListener('click', checkLock)
 
 newPalette.addEventListener('click', createNewPalette)
-viewSaved.addEventListener('click', showSaved)
+viewSaved.addEventListener('click', displaySaved)
+savePalette.addEventListener('click', savePaletteToBar)
+closeSaved.addEventListener('click', closeNavBar)
 
 
 
@@ -123,11 +120,29 @@ function updateColors() {
         var hold = document.querySelector(`#color-${i}`)
         hold.style.background = palette.colors[i].hex
         hold.innerHTML = 
-        ` <p id="hex-${i}">${palette.colors[i].hex}</p>
+        `<p>${palette.colors[i].hex}</p>
         <img class="lock" id="lock-${i}" src=${checkIfLocked(i)} alt="">`
     }
 }
 
-function showSaved() {
-    
+function displaySaved() {
+    savedMenu.classList.add('navOpen')
+    savedMenu.classList.remove('navClose')
+}
+
+function savePaletteToBar() {
+    for (var i = 0; i < savedPalettes.length; i++) {
+        if (this.id !== savedPalettes[i].id) {
+        savedPalettes.push(palette);
+    }       
+    }
+}
+
+function closeNavBar() {
+    savedMenu.classList.add('navClose')
+    savedMenu.classList.remove('navOpen')    
+}
+
+function displaySavedPalettes() {
+
 }
