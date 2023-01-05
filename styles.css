@@ -102,10 +102,25 @@ header > h1 {
 }
 
 .navOpen {
-    animation: slideLeft 2s ease-in;
+    animation: slideLeft 0.5s ease-in;
     transform: translateX(-100%);
 }
 
 .navClose {
     animation: slideRight 2s ease-in;
+}
+
+.box {
+    background-color: blue;
+    height: 2vw;
+    width: 2vw;
+    border: solid black 1px;
+    
+}
+
+.display-boxes {
+    display: flex;
+    justify-content: space-around;
+    
+
 }

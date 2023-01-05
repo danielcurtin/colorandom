@@ -25,6 +25,7 @@ class Palette{
                 this.colors[i].hex = randomHexCode()
             }
         }
+        this.id = Date.now()
     }
 
     lockColor(id) { 
@@ -119,7 +120,7 @@ function updateColors() {
         var hold = document.querySelector(`#color-${i}`)
         hold.style.background = palette.colors[i].hex
         hold.innerHTML = 
-        ` <p>${palette.colors[i].hex}</p>
+        `<p>${palette.colors[i].hex}</p>
         <img class="lock" id="lock-${i}" src=${checkIfLocked(i)} alt="">`
     }
 }
@@ -130,11 +131,18 @@ function displaySaved() {
 }
 
 function savePaletteToBar() {
-
+    for (var i = 0; i < savedPalettes.length; i++) {
+        if (this.id !== savedPalettes[i].id) {
+        savedPalettes.push(palette);
+    }       
+    }
 }
 
 function closeNavBar() {
     savedMenu.classList.add('navClose')
-    savedMenu.classList.remove('navOpen')
-    
+    savedMenu.classList.remove('navOpen')    
+}
+
+function displaySavedPalettes() {
+
 }
