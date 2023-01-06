@@ -46,7 +46,7 @@ var newPaletteBtn = document.querySelector("#new")
 var savePaletteBtn = document.querySelector("#save")
 var viewSavedBtn = document.querySelector("#saved")
 var closeSavedBtn = document.querySelector('#close-saved')
-
+var toolTipText = document.querySelector(".tool-tip")
 
 var color1 = document.querySelector("#color-0")
 var color2 = document.querySelector("#color-1")
@@ -76,6 +76,13 @@ viewSavedBtn.addEventListener('click', openNavBar)
 savePaletteBtn.addEventListener('click', checkForDuplicate)
 closeSavedBtn.addEventListener('click', closeNavBar)
 savedMenu.addEventListener('click', deleteSavedPalette)
+document.addEventListener('keyup', function(event) {
+    if (event.code === 'Space') {
+        toolTipText.classList.remove("tool-tip")
+        createNewPalette()
+    }
+})
+
 
 
 function getRandomNumber() {
