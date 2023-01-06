@@ -30,6 +30,12 @@ header > h1 {
   color: white;
 }
 
+header > h1 > .colors-flat {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .tool-tip {
   font-size: 2rem;
   height: 90%;

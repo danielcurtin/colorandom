@@ -46,6 +46,7 @@ class Palette {
 }
 
 
+var logoText = document.querySelector('#logoText');
 var newPaletteBtn = document.querySelector("#new")
 var savePaletteBtn = document.querySelector("#save")
 var viewSavedBtn = document.querySelector("#saved")
@@ -62,12 +63,17 @@ var color5 = document.querySelector("#color4")
 var savedMenu = document.querySelector('#savedPalettes')
 var displayBoxes = document.querySelector('.display-boxes')
 
-var palette = new Palette()
 var hexCharacters = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+var palette = new Palette()
 var savedPalettes = [];
 
 
-window.addEventListener('load', createNewPalette)
+window.addEventListener('load', function() {
+    createNewPalette();
+    randomizeColors();
+})
+
+logoText.addEventListener('mouseover', randomizeColors);
 
 color1.addEventListener('click', checkIfLock)
 color2.addEventListener('click', checkIfLock)
@@ -101,6 +107,13 @@ function randomHexCode() {
 
     return `#${currentHexCode}`
 }
+
+function randomizeColors() {
+    for (var i = 0; i < 10; i++) {
+      var currentLetter = document.querySelector(`[data-index="${i}"]`);
+      currentLetter.style.backgroundColor = randomHexCode();
+    };
+};
 
 function checkIfLock(event) {
     if (event.target.className === "lock") {
