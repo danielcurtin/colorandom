@@ -31,13 +31,20 @@ header > h1 {
     color: white;
 }
 
+.button,
+.lock,
+.close-button,
+.delete-btn {
+    cursor: pointer;
+}
+
 .tool-tip {
     font-size: 2rem;
     height: 90%;
     color: white;
 }
 
-.buttons {
+.header-buttons {
     display: flex;
     align-items: center;
 }
@@ -67,7 +74,7 @@ header > h1 {
     width: 50px;
 }
 
-#saved-palettes {
+.saved-nav {
     position: absolute;
     top: 0px;
     right: -20vw;
@@ -80,7 +87,7 @@ header > h1 {
     border-bottom-left-radius: 40px;
 }
 
-#close-saved {
+.close-button {
     align-self: end;
     height: 40px;
     width: 40px;

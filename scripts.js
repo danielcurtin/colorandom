@@ -46,17 +46,17 @@ class Palette {
 var newPaletteBtn = document.querySelector("#new")
 var savePaletteBtn = document.querySelector("#save")
 var viewSavedBtn = document.querySelector("#saved")
-var closeSavedBtn = document.querySelector('#close-saved')
+var closeSavedBtn = document.querySelector('#closeSaved')
 var toolTipText = document.querySelector(".tool-tip")
 var hexText = document.querySelectorAll(".color")
 
-var color1 = document.querySelector("#color-0")
-var color2 = document.querySelector("#color-1")
-var color3 = document.querySelector("#color-2")
-var color4 = document.querySelector("#color-3")
-var color5 = document.querySelector("#color-4")
+var color1 = document.querySelector("#color0")
+var color2 = document.querySelector("#color1")
+var color3 = document.querySelector("#color2")
+var color4 = document.querySelector("#color3")
+var color5 = document.querySelector("#color4")
 
-var savedMenu = document.querySelector('#saved-palettes')
+var savedMenu = document.querySelector('#savedPalettes')
 var displayBoxes = document.querySelector('.display-boxes')
 
 var palette = new Palette()
@@ -120,11 +120,11 @@ function createNewPalette() {
 
 function updateColors() {
     for (var i = 0; i < palette.colors.length; i++) {
-        var currentColor = document.querySelector(`#color-${i}`)
+        var currentColor = document.querySelector(`#color${i}`)
         currentColor.style.background = palette.colors[i].hex
         currentColor.innerHTML = 
         `<p>${palette.colors[i].hex}</p>
-        <img class="lock" id="lock-${i}" src=${toggleLock(i)} alt="">`
+        <img class="lock" id="lock${i}" src=${toggleLock(i)} alt="">`
         updateFontColor(i)
     }
 
