@@ -7,44 +7,45 @@
     <style rel="stylesheet"> @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');</style>
     <link rel="stylesheet" href="./styles.css">
     <title>Colorandom</title>
-
 </head>
 <body>
     <main>
         <header>
-            <h1>Colorandom</h1>
+            <h1 id="logoText">
+                <span class="colors-flat" data-index="0">C</span><span class="colors-flat" data-index="1">o</span><span class="colors-flat" data-index="2">l</span><span class="colors-flat" data-index="3">o</span><span class="colors-flat" data-index="4">r</span><span class="colors-flat" data-index="5">a</span><span class="colors-flat" data-index="6">n</span><span class="colors-flat" data-index="7">d</span><span class="colors-flat" data-index="8">o</span><span class="colors-flat" data-index="9">m</span>
+            </h1>
             <p class="tool-tip">Press spacebar to generate new palette!</p>
-            <section class="buttons">
-                <button class="button" id="new">New Palette</button>
-                <button class="button" id="save">Save Palette</button>
-                <button class="button" id="saved">View Saved Palettes</button>
+            <section class="header-buttons-container">
+                <button class="header-button" id="new">New Palette</button>
+                <button class="header-button" id="save">Save Palette</button>
+                <button class="header-button" id="saved">View Saved Palettes</button>
             </section>
         </header>
-        <section class="boxes">
-            <div class="color" id="color-0">
+        <section class="palette">
+            <div class="color" id="color0">
                 <p>#FF0000</p>
-                <img class="lock" id="lock-0" src="./icons/black-unlock.png" alt="">
+                <img class="lock" id="lock0" src="./icons/black-unlock.png" alt="outlined lock icon">
             </div>
-            <div class="color" id="color-1">
+            <div class="color" id="color1">
                 <p>#FFA500</p>
-                <img class="lock" id="lock-1" src="./icons/black-unlock.png" alt="">
+                <img class="lock" id="lock1" src="./icons/black-unlock.png" alt="outlined lock icon">
             </div>
-            <div class="color" id="color-2">
+            <div class="color" id="color2">
                 <p>#FFFF00</p>
-                <img class="lock" id="lock-2" src="./icons/black-unlock.png" alt="">
+                <img class="lock" id="lock2" src="./icons/black-unlock.png" alt="outlined lock icon">
             </div>
-            <div class="color" id="color-3">
+            <div class="color" id="color3">
                 <p>#00FF00</p>
-                <img class="lock" id="lock-3" src="./icons/black-unlock.png" alt="">
+                <img class="lock" id="lock3" src="./icons/black-unlock.png" alt="outlined lock icon">
             </div>
-            <div class="color" id="color-4">
+            <div class="color" id="color4">
                 <p>#0000FF</p>
-                <img class="lock" id="lock-4" src="./icons/black-unlock.png" alt="">
+                <img class="lock" id="lock4" src="./icons/black-unlock.png" alt="outlined lock icon">
             </div>
         </section> 
     </main>
-    <nav id="saved-palettes">
-        <button id="close-saved"><img src="./icons/close-saved.png" style="width: 30px; height: 30px" alt=""></button>
+    <nav class="saved-nav" id="savedPalettes">
+        <button class="close-button" id="closeSaved"><img src="./icons/close-saved.png" style="width: 30px; height: 30px" alt="an X icon with a circle around it"></button>
         <section class="display-boxes"></section>
     </nav>
     <script type="text/javascript" src="scripts.js"></script>

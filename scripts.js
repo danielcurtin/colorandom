@@ -14,6 +14,7 @@ class Palette {
             new Color(hex4),
             new Color(hex5)
         ]
+
         this.id = id || Date.now()
     }
 
@@ -23,6 +24,7 @@ class Palette {
                 this.colors[i].hex = randomHexCode()
             }
         }
+
         this.id = Date.now()
     }
 
@@ -30,6 +32,7 @@ class Palette {
         var element = document.querySelector(`#${id}`)
         var strInt = id.substr(id.length - 1, 1)
         var num = parseInt(strInt)
+
         if (this.colors[num].locked) {
             this.colors[num].locked = false;
             element.src = `./icons/${checkBrightness(this.colors[num].hex)}-unlock.png`
@@ -37,35 +40,40 @@ class Palette {
             this.colors[num].locked = true;
             element.src = `./icons/${checkBrightness(this.colors[num].hex)}-lock.png`
         }
+
         updateFontColor(num)
     }
 }
 
 
-
+var logoText = document.querySelector('#logoText');
 var newPaletteBtn = document.querySelector("#new")
 var savePaletteBtn = document.querySelector("#save")
 var viewSavedBtn = document.querySelector("#saved")
-var closeSavedBtn = document.querySelector('#close-saved')
+var closeSavedBtn = document.querySelector('#closeSaved')
 var toolTipText = document.querySelector(".tool-tip")
 var hexText = document.querySelectorAll(".color")
 
-var color1 = document.querySelector("#color-0")
-var color2 = document.querySelector("#color-1")
-var color3 = document.querySelector("#color-2")
-var color4 = document.querySelector("#color-3")
-var color5 = document.querySelector("#color-4")
+var color1 = document.querySelector("#color0")
+var color2 = document.querySelector("#color1")
+var color3 = document.querySelector("#color2")
+var color4 = document.querySelector("#color3")
+var color5 = document.querySelector("#color4")
 
-var savedMenu = document.querySelector('#saved-palettes')
+var savedMenu = document.querySelector('#savedPalettes')
 var displayBoxes = document.querySelector('.display-boxes')
 
-var palette = new Palette()
 var hexCharacters = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+var palette = new Palette()
 var savedPalettes = [];
 
 
-createNewPalette()
+window.addEventListener('load', function() {
+    createNewPalette();
+    randomizeColors();
+})
 
+logoText.addEventListener('mouseover', randomizeColors);
 
 color1.addEventListener('click', checkIfLock)
 color2.addEventListener('click', checkIfLock)
@@ -78,6 +86,7 @@ viewSavedBtn.addEventListener('click', openNavBar)
 savePaletteBtn.addEventListener('click', checkForDuplicate)
 closeSavedBtn.addEventListener('click', closeNavBar)
 savedMenu.addEventListener('click', deleteSavedPalette)
+
 document.addEventListener('keyup', function(event) {
     if (event.code === 'Space') {
         toolTipText.classList.remove("tool-tip")
@@ -85,19 +94,26 @@ document.addEventListener('keyup', function(event) {
     }
 })
 
-
-
 function getRandomNumber() {
     return Math.floor(Math.random() * hexCharacters.length)
 }
 
 function randomHexCode() {
     var currentHexCode = ""
+
     for (var i = 0; i < 6; i++) {
         currentHexCode += hexCharacters[getRandomNumber()]
     }
+
     return `#${currentHexCode}`
 }
+
+function randomizeColors() {
+    for (var i = 0; i < 10; i++) {
+      var currentLetter = document.querySelector(`[data-index="${i}"]`);
+      currentLetter.style.backgroundColor = randomHexCode();
+    };
+};
 
 function checkIfLock(event) {
     if (event.target.className === "lock") {
@@ -120,14 +136,15 @@ function createNewPalette() {
 
 function updateColors() {
     for (var i = 0; i < palette.colors.length; i++) {
-        var currentColor = document.querySelector(`#color-${i}`)
+        var currentColor = document.querySelector(`#color${i}`)
+
         currentColor.style.background = palette.colors[i].hex
         currentColor.innerHTML = 
         `<p>${palette.colors[i].hex}</p>
-        <img class="lock" id="lock-${i}" src=${toggleLock(i)} alt="">`
+        <img class="lock" id="lock${i}" src=${toggleLock(i)} alt="outlined lock icon">`
+
         updateFontColor(i)
     }
-
 }
 
 function checkForDuplicate() {
@@ -136,6 +153,7 @@ function checkForDuplicate() {
             return
         }      
     }
+
     savePalette()
     createNewPalette()
     displaySavedPalettes()
@@ -143,11 +161,13 @@ function checkForDuplicate() {
 
 function savePalette() {
     var currentPalette = new Palette(palette.colors[0].hex, palette.colors[1].hex, palette.colors[2].hex, palette.colors[3].hex, palette.colors[4].hex, palette.id)
+    
     savedPalettes.push(currentPalette)
 }
 
 function displaySavedPalettes() {
-    displayBoxes.innerHTML = `` 
+    displayBoxes.innerHTML = ``
+
     for(var i = 0; i < savedPalettes.length; i++) {
         displayBoxes.innerHTML += 
         `
@@ -156,7 +176,7 @@ function displaySavedPalettes() {
             <div class="box" style="background: ${savedPalettes[i].colors[2].hex}"></div>
             <div class="box" style="background: ${savedPalettes[i].colors[3].hex}"></div>
             <div class="box" style="background: ${savedPalettes[i].colors[4].hex}"></div>
-            <img class="delete-btn" id="d${savedPalettes[i].id}" src="./icons/trashcan.png" style="width: 2.3vw; height: 2.3vw" alt="">
+            <img class="delete-btn" id="d${savedPalettes[i].id}" src="./icons/trashcan.png" style="width: 2.3vw; height: 2.3vw" alt="trashcan icon">
         `
     }
 } 
@@ -174,13 +194,16 @@ function closeNavBar() {
 
 function deleteSavedPalette(event) {
     var deletionTarget = event.target.id
+
     deletionTarget = deletionTarget.slice(1)
     deletionTarget = parseInt(deletionTarget)
+
     for (var i = 0; i < savedPalettes.length; i++) {
         if (savedPalettes[i].id === deletionTarget) {
             savedPalettes.splice(i, 1)
         }
     }
+
     displaySavedPalettes()
 }
 
@@ -188,10 +211,7 @@ function updateFontColor(num) {
     hexText[num].style.color = checkBrightness(palette.colors[num].hex)
 }
 
-
-
 function checkBrightness(hex) {
-
     var newHex = +("0x" + hex.slice(1).replace(hex.length < 5 && /./g, '$&$&'));
 
     r = newHex >> 16;

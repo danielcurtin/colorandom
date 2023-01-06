@@ -1,134 +1,143 @@
 * {
-    font-family: 'Amatic SC', cursive;
-    overflow: hidden;
+  font-family: 'Amatic SC', cursive;
+  overflow: hidden;
 }
 
-body {
-    padding: 0px;
-    margin: 0px;
-    background-color: black;
+body,
+main {
+  height: 100vh;
+  width: 100vw;
+  padding: 0px;
+  margin: 0px;
+  background-color: black;
 }
 
 main {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-flow: column;
-    margin: 0px;
-    padding: 0px;
+  display: flex;
+  flex-flow: column;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    height: 7vw;
+  display: flex;
+  justify-content: space-between;
+  height: 7vw;
 }
 
 header > h1 {
-    font-size: 4rem;
-    margin: 8px 0 0 10px;
-    padding: 0px;
-    color: white;
+  font-size: 5vw;
+  margin: 8px 0 0 10px;
+  padding: 0px;
+  color: white;
+}
+
+header > h1 > .colors-flat {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .tool-tip {
-    font-size: 2rem;
-    height: 90%;
-    color: white;
+  font-size: 2rem;
+  height: 90%;
+  color: white;
 }
 
-.buttons {
-    display: flex;
-    align-items: center;
+.header-buttons-container {
+  display: flex;
+  align-items: center;
 }
 
-.button {
-    height: 70%;
-    font-size: 2rem;
-    margin: 10px;
+.header-button {
+  height: 70%;
+  font-size: 2vw;
+  margin: 10px;
+}
+
+.palette {
+  display: flex;
 }
 
 .color {
-    height: 100vh;
-    width: 20vw;
-    font-size: 4rem;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-}
-
-.boxes {
-    display: flex;
-    justify-content: row;
+  height: 100vh;
+  width: 20vw;
+  font-size: 4.5vw;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 .lock {
-    height: 50px;
-    width: 50px;
+  height: 4.5vw;
+  width: 4.5vw;
 }
 
-#saved-palettes {
-    position: absolute;
-    top: 0px;
-    right: -20vw;
-    height: 100vh;
-    width: 20vw;
-    display: flex;
-    flex-flow: column;
-    background: white;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
+.saved-nav {
+  position: absolute;
+  top: 0px;
+  right: -20vw;
+  height: 100vh;
+  width: 20vw;
+  display: flex;
+  flex-flow: column;
+  background: white;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
 }
 
-#close-saved {
-    align-self: end;
-    height: 40px;
-    width: 40px;
-    margin: 5px;
-    border: none;
-    background-color: transparent;
-
-}
-
-@keyframes slideLeft {
-    from{
-        transform: translateX(0%);
-    }
-
-    to{
-        transform: translateX(-100%);
-    }
-}
-
-@keyframes slideRight {
-    from{
-        transform: translateX(-100%);
-    }
-
-    to{
-        transform: translateX(0%);
-    }
+.close-button {
+  align-self: end;
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+  border: 0;
+  background-color: transparent;
 }
 
 .navOpen {
-    animation: slideLeft 0.5s ease-in;
-    transform: translateX(-100%);
+  animation: slideLeft 0.5s ease-in;
+  transform: translateX(-100%);
 }
 
 .navClose {
-    animation: slideRight 0.5s ease-in;
+  animation: slideRight 0.5s ease-in;
 }
 
-.box {
-    height: 2.5vw;
-    width: 2.5vw;
-    border-radius: 10px;
+@keyframes slideLeft {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
 }
 
 .display-boxes {
-    margin-top: 30px;
-    margin-left: 15px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
-    grid-gap: 1rem;
+  margin: 1rem 0px 0px 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0.5vw;
+}
+
+.box {
+  height: 2.5vw;
+  width: 2.5vw;
+  border-radius: 0.7rem;
+}
+
+.header-button,
+.lock,
+.close-button,
+.delete-btn {
+  cursor: pointer;
 }
