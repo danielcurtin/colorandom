@@ -5,7 +5,7 @@
 ###### &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Additionally, try hitting spacebar to generate a new palette instead of the button, and hover over the logo for a fun effect!
 
 ### Installation Instructions
-#### Colorandom is accessible through [this](ea-ordonez.github.io/group-project1/) website, or locally through the following instructions
+#### Colorandom is accessible through [this](https://danielcurtin.github.io/colorandom/) website, or locally through the following instructions
 - Clone down this repo, and navigate into the directory for it.
 - Run Open index.html in the command prompt, and the application should open in your default web browser.
 
