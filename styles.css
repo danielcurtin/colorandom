@@ -19,13 +19,14 @@ main {
 
 header {
   display: flex;
-  justify-content: space-between;
   height: 7vw;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header > h1 {
   font-size: 5vw;
-  margin: 8px 0 0 10px;
+  margin: 0 0 0 10px;
   padding: 0px;
   color: white;
 }
@@ -38,11 +39,13 @@ header > h1 > .colors-flat {
 
 .tool-tip {
   font-size: 2rem;
-  height: 90%;
+  text-align: center;
   color: white;
+  margin: 0;
 }
 
 .header-buttons-container {
+  height: 100%;
   display: flex;
   align-items: center;
 }
@@ -74,9 +77,9 @@ header > h1 > .colors-flat {
 .saved-nav {
   position: absolute;
   top: 0px;
-  right: -20vw;
+  right: -300px;
   height: 100vh;
-  width: 20vw;
+  width: 300px;
   display: flex;
   flex-flow: column;
   background: white;
@@ -123,15 +126,16 @@ header > h1 > .colors-flat {
 }
 
 .display-boxes {
-  margin: 1rem 0px 0px 0.5rem;
+  margin: 1rem 0px 0px 0px;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 0.5vw;
+  row-gap: 0.75rem;
+  justify-items: center;
 }
 
 .box {
-  height: 2.5vw;
-  width: 2.5vw;
+  height: 2rem;
+  width: 2rem;
   border-radius: 0.7rem;
 }
 
@@ -140,4 +144,66 @@ header > h1 > .colors-flat {
 .close-button,
 .delete-btn {
   cursor: pointer;
+}
+
+@media screen and (max-width: 1050px) {
+  header {
+    height: 10vh;
+  }
+
+  header > h1 {
+    font-size: 2.5rem;
+  }
+
+  .header-button {
+    font-size: 1.5rem;
+  }
+
+  .palette {
+    flex-flow: column;
+  }
+
+  .tool-tip {
+    font-size: 3vw;
+  }
+
+  .color {
+    width: 100%;
+    height: 18vh;
+    flex-flow: row;
+    justify-content: space-between;
+    font-size: 3.5rem;
+  }
+
+  .lock {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header-buttons-container {
+    width: 50%;
+    gap: 10px;
+    margin-right: 2%;
+  }
+
+  .header-button {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  
+  .tool-tip {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  header > h1 {
+    font-size: 2rem;
+  }
+
+  .header-button {
+    font-size: 0.9rem;
+  }
 }
